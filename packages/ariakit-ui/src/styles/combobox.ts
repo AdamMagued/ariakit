@@ -68,10 +68,18 @@ export const comboboxGroupLabel = cv({
 
 export const comboboxItem = cv({
   extend: [option],
-  class: "data-active-item:ak-state-5",
+  class: [
+    "data-active-item:ak-state-5",
+    "forced-colors:data-active-item:bg-[Highlight]",
+    "forced-colors:data-active-item:text-[HighlightText]",
+  ],
   variants: {
     /** Paints the highlighted appearance for static content. */
-    $highlighted: "ak-state-5",
+    $highlighted: [
+      "ak-state-5",
+      "forced-colors:bg-[Highlight]",
+      "forced-colors:text-[HighlightText]",
+    ],
   },
   defaultVariants: {
     $hoverOffset: false,
