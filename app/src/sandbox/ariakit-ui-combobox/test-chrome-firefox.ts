@@ -48,6 +48,24 @@ withFramework(import.meta.dirname, async ({ test }) => {
 });
 
 withCaptures(import.meta.dirname, async ({ test }) => {
+  // https://github.com/ariakit/ariakit/issues/7518
+  test("keeps the active option visible in forced colors @visual", async ({
+    page,
+    q,
+    visual,
+  }) => {
+    await page.emulateMedia({ forcedColors: "active" });
+    await forEachColorScheme(page, async (colorScheme) => {
+      const box = q.article("Open suggestions");
+      await captureInView({
+        visual,
+        box,
+        colorScheme,
+        item: "ariakit-ui-combobox/forced-colors/open-suggestions",
+      });
+    });
+  });
+
   // https://github.com/ariakit/ariakit/pull/7500#discussion_r4000661269
   test("keeps the empty message borderless in forced colors @visual", async ({
     page,
